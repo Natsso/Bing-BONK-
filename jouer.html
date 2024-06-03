@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jouer - Bing BONK!</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            flex-direction: column;
+        }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .menu button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .mega-dur {
+            color: red;
+        }
+        .mega-dur:hover {
+            animation: shake 0.5s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+        canvas {
+            display: none;
+            margin: 0 auto;
+            background: #000;
+        }
+        .overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+            text-align: center;
+        }
+        .timer {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <h1>Choisissez une difficulté</h1>
+        <button onclick="startGame('easy')">Facile</button>
+        <button onclick="startGame('medium')">Moyen</button>
+        <button onclick="startGame('hard')">Dur !</button>
+        <button class="mega-dur" onclick="startGame('mega-hard')">MEGA DUR !!!!</button>
+    </div>
+    <div class="timer" id="timer">00:00:00</div>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div class="overlay" id="endGameOverlay">
+        <h2 id="endGameMessage"></h2>
+        <button onclick="retryGame()">Retry</button>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
